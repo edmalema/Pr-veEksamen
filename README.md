@@ -67,21 +67,24 @@ Kanban hjalp med å strukturere arbeidet og gi et tydelig mål for fremtiden
 
 ## 5. Databasebeskrivelse
 
-**Databasenavn:**
+**Databasenavn: PrøveEksamen**
 
-**Tabeller:**\
-\| Tabell \| Felt \| Datatype \| Beskrivelse \|
-\|--------\|-------\|-----------\|--------------\| \| customers \| id \|
-INT \| Primærnøkkel \| \| customers \| name \| VARCHAR(255) \| Navn \|
-\| customers \| address \| VARCHAR(255) \| Adresse \|
+**Tabeller:**
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| username | varchar(100) | YES  |     | NULL    |                |
+| password | varchar(255) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
 
 **SQL-eksempel:**
 
 ``` sql
-CREATE TABLE customers (
+CREATE TABLE Users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
-  address VARCHAR(255)
+  username VARCHAR(100),
+  password VARCHAR(255)
 );
 ```
 
@@ -89,15 +92,25 @@ CREATE TABLE customers (
 
 ## 6. Programstruktur
 
-    projectnavn/
-     ├── app.py
-     ├── templates/
+    Prøveeksamen/
+     ├── .venv
      ├── static/
-     └── .env
+     |   ├── Scripts
+     |   └── Styles
+     |       └── Styles.css
+     ├── templates/
+     |   ├── Login.html
+     |   └── Ping.html
+     ├── .env
+     ├── .gitignore
+     ├── app.py
+     ├── Kanban.png
+     ├── README.md
+     └── requirements.txt
 
 Databasestrøm:
 
-    HTML → Flask → MariaDB → Flask → HTML-tabell
+    HTML/Jinja → Flask → MariaDB → Flask → HTML/Jinja
 
 ------------------------------------------------------------------------
 
