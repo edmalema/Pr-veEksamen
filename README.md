@@ -76,6 +76,7 @@ Kanban hjalp med å strukturere arbeidet og gi et tydelig mål for fremtiden
 | id       | int(11)      | NO   | PRI | NULL    | auto_increment |
 | username | varchar(100) | YES  |     | NULL    |                |
 | password | varchar(255) | YES  |     | NULL    |                |
+| voted    | tinyint(1)   | NO   |     | 0       |                |
 +----------+--------------+------+-----+---------+----------------+
 
 **SQL-eksempel:**
@@ -84,7 +85,9 @@ Kanban hjalp med å strukturere arbeidet og gi et tydelig mål for fremtiden
 CREATE TABLE Users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100),
-  password VARCHAR(255)
+  password VARCHAR(255),
+  voted tinyint(1) NOT NULL DEFAULT 0,
+  active tinyint(1) NOT NULL DEFAULT 1,
 );
 ```
 
@@ -93,9 +96,10 @@ CREATE TABLE Users (
 ## 6. Programstruktur
 
     Prøveeksamen/
-     ├── .venv
+     ├── venv
      ├── static/
-     |   ├── Scripts
+     |   ├── Images
+     |       └── Alle bildene...
      |   └── Styles
      |       └── Styles.css
      ├── templates/
@@ -116,38 +120,16 @@ Databasestrøm:
 
 ## 7. Kodeforklaring
 
-Forklar ruter og funksjoner (kort).
+ - LoggIn - Login funksjonen
+ - Index - Sender bruker til andre sider
+ - SignUp - Registrernings funksjonen
+
 
 ------------------------------------------------------------------------
 
 ## 8. Sikkerhet og pålitelighet
 
 -   .env\
--   Miljøvariabler\
--   Parameteriserte spørringer\
--   Validering\
--   Feilhåndtering
-
-------------------------------------------------------------------------
-
-## 9. Feilsøking og testing
-
--   Typiske feil\
--   Hvordan du løste dem\
--   Testmetoder
-
-------------------------------------------------------------------------
-
-## 10. Konklusjon og refleksjon
-
--   Hva lærte du?\
--   Hva fungerte bra?\
--   Hva ville du gjort annerledes?\
--   Hva var utfordrende?
-
-------------------------------------------------------------------------
-
-## 11. Kildeliste
-
--   w3schools\
--   flask.palletsprojects.com
+-   Werkzeug\
+-   FAQ\
+-   Ingen SQL injections
