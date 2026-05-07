@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'Styles/Styles.css') }}">
+</head>
+
+<body>
+    <h1>Login</h1>
+
+
+    <form action="/login" enctype="multipart/form-data" method="POST">
+
+        <div class="LoginInputs">
+            <input type="text" name="username" placeholder="Username" />
+
+            <input type="text" name="password" placeholder="Password" height="500px" />
+        </div>
+
+        <input type="submit" name="type" value="Login" id="LoginInput" width="10vw">
+
+        <p class="ErrorText">{{ ErrorType }}</p>
+    </form>
+
+</body>
+
+</html>
