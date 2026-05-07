@@ -3,9 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import mysql.connector
 from dotenv import find_dotenv, load_dotenv
-
+from waitress import serve
 
 app = Flask(__name__)
+
+
 
 app.secret_key = "SuperSecretKey"
 dotenv_path = find_dotenv()
@@ -28,8 +30,43 @@ def get_db():
 
 @app.route("/ping", methods=["GET"])
 def Ping():
-    db = get_db()
-    cursor = db.cursor
+    return render_template('ping.html', User = session["user"])
 
 
-    return render_template('ping.html')
+@app.route("/login", methods=["GET","POST"])
+def Login():
+    
+
+    if request.method == "POST":
+        Username = request.form['username']
+        Password = request.form['password']
+
+        #Defines the post as either a login or a sign up
+        LoginSignUp = request.form['type']
+
+        
+        #Defines database and sql syntax
+        db = get_db()
+        cursor = db.cursor()
+        sql = "INSERT INTO Users (username, password) VALUES (%s, %s)"
+        val = (Username, Password)
+
+        #Executes sql
+        cursor.execute(sql, val)
+        db.commit()
+        print(cursor.rowcount, "record inserted.")
+        cursor.close()
+
+        session["user"] = Username
+        return redirect("/ping")
+
+
+    return render_template('Login.html')
+
+
+
+
+
+
+if __name__ == '__main__':
+    serve(app, host = '0.0.0.0', port = 5000)
